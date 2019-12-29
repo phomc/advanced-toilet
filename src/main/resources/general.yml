@@ -22,16 +22,4 @@ time_wc:
   min: 10
   max: 20
 
-wc_success:
-  title: "&a&l✔"
-  subtitle: "&fD O N E!"
-
-wc_fail:
-  action_bar: "&fDon't forget to go toilet :<"
-  potion_effects_pee:
-  - "SLOW"
-  potion_effects_poop:
-  - "SLOW"
-  - "CONFUSION"
-
 shit_name: "&6Shit"
