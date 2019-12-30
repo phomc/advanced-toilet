@@ -1,22 +1,3 @@
-/*
- * Decompiled with CFR 0_132.
- * 
- * Could not load the following classes:
- *  org.anhcraft.spaciouslib.Converter.DataTypes
- *  org.anhcraft.spaciouslib.Utils.Strings
- *  org.bukkit.Bukkit
- *  org.bukkit.Location
- *  org.bukkit.Material
- *  org.bukkit.OfflinePlayer
- *  org.bukkit.block.Block
- *  org.bukkit.command.Command
- *  org.bukkit.command.CommandExecutor
- *  org.bukkit.command.CommandSender
- *  org.bukkit.configuration.file.FileConfiguration
- *  org.bukkit.entity.Player
- *  org.bukkit.inventory.ItemStack
- *  org.bukkit.inventory.PlayerInventory
- */
 package dev.anhcraft.advancedtoilet;
 
 import co.aikar.commands.BaseCommand;
