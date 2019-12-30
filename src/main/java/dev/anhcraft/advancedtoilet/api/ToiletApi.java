@@ -107,7 +107,7 @@ public class ToiletApi extends ATComponent {
 
     @NotNull
     public ItemStack getShit() {
-        return new ItemBuilder(Material.COARSE_DIRT).name(plugin.generalConf.getString("shit_name")).build();
+        return new ItemBuilder(Material.DIRT).name(plugin.generalConf.getString("shit_name")).build();
     }
 }
 

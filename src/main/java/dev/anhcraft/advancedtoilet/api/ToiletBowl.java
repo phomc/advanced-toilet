@@ -1,7 +1,7 @@
 package dev.anhcraft.advancedtoilet.api;
 
+import dev.anhcraft.craftkit.cb_common.NMSVersion;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.Levelled;
 import org.jetbrains.annotations.NotNull;
 
 public class ToiletBowl {
@@ -32,9 +32,14 @@ public class ToiletBowl {
     }
 
     public void update() {
-        Levelled lv = (Levelled) block.getBlockData();
-        lv.setLevel(Math.min(lv.getMaximumLevel(), waterLevel.getLevel()));
-        block.setBlockData(lv);
+        if(NMSVersion.current().compare(NMSVersion.v1_13_R1) >= 0){
+            org.bukkit.block.data.Levelled lv = (org.bukkit.block.data.Levelled) block.getBlockData();
+            lv.setLevel(Math.min(lv.getMaximumLevel(), waterLevel.getLevel()));
+            block.setBlockData(lv);
+        } else {
+            block.getState().getData().setData((byte) waterLevel.getLevel());
+            block.getState().update();
+        }
     }
 
     public enum WaterLevel {

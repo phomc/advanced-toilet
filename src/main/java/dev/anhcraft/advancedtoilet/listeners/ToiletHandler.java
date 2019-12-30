@@ -8,6 +8,7 @@ import dev.anhcraft.advancedtoilet.api.ToiletActivity;
 import dev.anhcraft.advancedtoilet.api.ToiletBowl;
 import dev.anhcraft.craftkit.CraftExtension;
 import dev.anhcraft.craftkit.builders.ItemBuilder;
+import dev.anhcraft.craftkit.cb_common.NMSVersion;
 import dev.anhcraft.craftkit.cb_common.callbacks.gui.SlotCallback;
 import dev.anhcraft.craftkit.cb_common.gui.BaseGUI;
 import dev.anhcraft.craftkit.cb_common.gui.CustomGUI;
@@ -141,7 +142,10 @@ public class ToiletHandler extends ATComponent implements Listener {
                 27,
                 ChatUtil.formatColorCodes(plugin.messageConf.getString("title_wc_gui"))
         );
-        InventoryUtil.fillAll(cg, new ItemStack(Material.GRAY_STAINED_GLASS_PANE));
+        InventoryUtil.fillAll(cg, new ItemStack(Material.valueOf(
+                NMSVersion.current().compare(NMSVersion.v1_13_R1) >= 0 ?
+                        "GRAY_STAINED_GLASS_PANE" : "STAINED_GLASS_PANE"
+        ), 1, (short) 7));
         cg.addContentCallback(SlotCallback.PREVENT_MODIFY);
         cg.setItem(CenterSlot.CENTER_2_A.row(1), new ItemBuilder(Material.DIAMOND).name(plugin.messageConf.getString("pee_wc_gui")).build(), new SlotCallback() {
             @Override
