@@ -18,12 +18,12 @@ public class MainTask extends ATComponent implements Runnable {
 
     @Override
     public void run() {
-        for (UUID u : ToiletHandler.usingToilet.keySet()) {
-            ToiletPassenger ta = ToiletHandler.usingToilet.get(u);
+        for (UUID u : ToiletHandler.USING_TOILET.keySet()) {
+            ToiletPassenger ta = ToiletHandler.USING_TOILET.get(u);
             if (ta.getTime() == ta.getMaxTime()) {
                 ta.getPlayer().teleport(ta.getToilet().getSpawnPoint());
                 ta.getToilet().setPassenger(null);
-                ToiletHandler.usingToilet.remove(u);
+                ToiletHandler.USING_TOILET.remove(u);
                 if (ta.getActivity().equals(ToiletActivity.PEE)) {
                     plugin.chat.message(ta.getPlayer(), Objects.requireNonNull(plugin.messageConf.getString("pee_show_analytics")).replace("{data}", Integer.toString(ta.getCounter())).replace("{time}", Integer.toString(ta.getTime())));
                 } else {
@@ -62,7 +62,7 @@ public class MainTask extends ATComponent implements Runnable {
                 }
                 ta.setCounter(ta.getCounter() + 1);
             }
-            ToiletHandler.usingToilet.put(u, ta);
+            ToiletHandler.USING_TOILET.put(u, ta);
         }
     }
 }

@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @CommandAlias("at|wc|toilet")
 public class ATCommand extends BaseCommand {
-    private AdvancedToilet plugin;
+    private final AdvancedToilet plugin;
 
     public ATCommand(AdvancedToilet plugin) {
         this.plugin = plugin;

@@ -32,7 +32,7 @@ import java.util.*;
 import java.util.function.Predicate;
 
 public class ToiletApi extends ATComponent {
-    private static Map<Integer, Toilet> DATA = new HashMap<>();
+    private static final Map<Integer, Toilet> DATA = new HashMap<>();
     private static ToiletApi instance;
 
     @NotNull

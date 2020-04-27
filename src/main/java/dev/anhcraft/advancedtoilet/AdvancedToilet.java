@@ -66,7 +66,7 @@ public final class AdvancedToilet extends JavaPlugin {
     }
 
     public void loadConf() {
-        File folder = new File("plugins/Toilet");
+        File folder = getDataFolder();
         if (!folder.exists()) {
             folder.mkdirs();
         }

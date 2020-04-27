@@ -6,7 +6,7 @@
 
     <groupId>dev.anhcraft</groupId>
     <artifactId>AdvancedToilet</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>AdvancedToilet</name>
@@ -88,7 +88,7 @@
         <dependency>
             <groupId>dev.anhcraft</groupId>
             <artifactId>craftkit.spigot</artifactId>
-            <version>1.1.6</version>
+            <version>1.1.9</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

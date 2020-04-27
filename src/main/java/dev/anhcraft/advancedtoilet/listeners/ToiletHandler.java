@@ -34,7 +34,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class ToiletHandler extends ATComponent implements Listener {
-    public static Map<UUID, ToiletPassenger> usingToilet = new HashMap<>();
+    public static Map<UUID, ToiletPassenger> USING_TOILET = new HashMap<>();
 
     public ToiletHandler(AdvancedToilet plugin) {
         super(plugin);
@@ -52,13 +52,13 @@ public class ToiletHandler extends ATComponent implements Listener {
         int max = plugin.generalConf.getInt("time_wc.max");
         ToiletPassenger ta = new ToiletPassenger(p, act, 0, RandomUtil.randomInt(min, max), toilet);
         toilet.setPassenger(ta);
-        usingToilet.put(p.getUniqueId(), ta);
+        USING_TOILET.put(p.getUniqueId(), ta);
     }
 
     @EventHandler
     public void move(PlayerMoveEvent event) {
         Player p = event.getPlayer();
-        ToiletPassenger x = usingToilet.get(p.getUniqueId());
+        ToiletPassenger x = USING_TOILET.get(p.getUniqueId());
         if (x != null) {
             ToiletBowl tb = x.getToilet().getBowl();
             if(tb == null) return;
@@ -84,7 +84,7 @@ public class ToiletHandler extends ATComponent implements Listener {
     public void interact(PlayerInteractEvent event) {
         Block clickedBlock = event.getClickedBlock();
         if (clickedBlock != null) {
-            ToiletPassenger iut = usingToilet.get(event.getPlayer().getUniqueId());
+            ToiletPassenger iut = USING_TOILET.get(event.getPlayer().getUniqueId());
             if(iut == null){
                 Location clickedLoc = clickedBlock.getLocation();
                 if (clickedBlock.getType().equals(Material.CAULDRON)) {
@@ -105,7 +105,7 @@ public class ToiletHandler extends ATComponent implements Listener {
                     }
                 } else if (clickedBlock.getType().name().contains("_DOOR")) {
                     boolean selected = false;
-                    for (ToiletPassenger ta : usingToilet.values()) {
+                    for (ToiletPassenger ta : USING_TOILET.values()) {
                         Block dr = ta.getToilet().getDoor();
                         if(dr == null) continue;
                         Location loc = dr.getLocation();

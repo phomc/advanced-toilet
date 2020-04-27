@@ -48,7 +48,7 @@ public class ToiletBowl {
         TWO_OF_THREE_PARTS(2),
         FULL(3);
 
-        private int level;
+        private final int level;
 
         WaterLevel(int level) {
             this.level = level;
