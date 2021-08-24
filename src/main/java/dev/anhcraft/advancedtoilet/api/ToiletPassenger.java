@@ -4,12 +4,12 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class ToiletPassenger {
-    private Toilet toilet;
+    private final Toilet toilet;
     private int time;
-    private ToiletActivity act;
+    private final ToiletActivity act;
     private int counter;
-    private int maxTime;
-    private Player player;
+    private final int maxTime;
+    private final Player player;
 
     public ToiletPassenger(@NotNull Player player, @NotNull ToiletActivity act, int time, int maxTime, @NotNull Toilet toilet) {
         this.toilet = toilet;

@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0_132.
- * 
+ *
  * Could not load the following classes:
  *  org.anhcraft.spaciouslib.Converter.DataTypes
  *  org.anhcraft.spaciouslib.Inventory.SItems
@@ -18,7 +18,7 @@ package dev.anhcraft.advancedtoilet.api;
 import com.google.common.collect.ImmutableList;
 import dev.anhcraft.advancedtoilet.ATComponent;
 import dev.anhcraft.advancedtoilet.AdvancedToilet;
-import dev.anhcraft.craftkit.builders.ItemBuilder;
+import dev.anhcraft.advancedtoilet.utils.ItemUtil;
 import dev.anhcraft.jvmkit.utils.EnumUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -107,7 +107,6 @@ public class ToiletApi extends ATComponent {
 
     @NotNull
     public ItemStack getShit() {
-        return new ItemBuilder(Material.DIRT).name(plugin.generalConf.getString("shit_name")).build();
+        return ItemUtil.buildItem(Material.DIRT, plugin.generalConf.getString("shit_name"));
     }
 }
-

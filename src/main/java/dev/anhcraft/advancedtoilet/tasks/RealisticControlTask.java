@@ -3,8 +3,8 @@ package dev.anhcraft.advancedtoilet.tasks;
 import dev.anhcraft.advancedtoilet.ATComponent;
 import dev.anhcraft.advancedtoilet.AdvancedToilet;
 import dev.anhcraft.advancedtoilet.api.ToiletActivity;
-import dev.anhcraft.craftkit.common.utils.ChatUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Particle;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -81,7 +81,7 @@ public class RealisticControlTask extends ATComponent implements Runnable {
                     plugin.chat.message(p, Objects.requireNonNull(plugin.messageConf.getString("poop_through_time")));
                     p.getWorld().spawnParticle(Particle.DRIP_LAVA, p.getLocation(), 300, 0, 0, 0, 0);
                     final Item i = p.getWorld().dropItemNaturally(p.getLocation(), plugin.api.getShit());
-                    i.setCustomName(ChatUtil.formatColorCodes(p.getName() + "'s shit"));
+                    i.setCustomName(ChatColor.translateAlternateColorCodes('&', p.getName() + "'s shit"));
                     i.setCustomNameVisible(true);
                     Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, i::remove, 120L);
                     continue;

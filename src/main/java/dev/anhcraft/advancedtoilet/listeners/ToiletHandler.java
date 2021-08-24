@@ -2,20 +2,16 @@ package dev.anhcraft.advancedtoilet.listeners;
 
 import dev.anhcraft.advancedtoilet.ATComponent;
 import dev.anhcraft.advancedtoilet.AdvancedToilet;
-import dev.anhcraft.advancedtoilet.api.ToiletPassenger;
 import dev.anhcraft.advancedtoilet.api.Toilet;
 import dev.anhcraft.advancedtoilet.api.ToiletActivity;
 import dev.anhcraft.advancedtoilet.api.ToiletBowl;
-import dev.anhcraft.craftkit.CraftExtension;
-import dev.anhcraft.craftkit.builders.ItemBuilder;
-import dev.anhcraft.craftkit.cb_common.NMSVersion;
-import dev.anhcraft.craftkit.cb_common.callbacks.gui.SlotCallback;
-import dev.anhcraft.craftkit.cb_common.gui.BaseGUI;
-import dev.anhcraft.craftkit.cb_common.gui.CustomGUI;
-import dev.anhcraft.craftkit.cb_common.inventory.CenterSlot;
-import dev.anhcraft.craftkit.common.utils.ChatUtil;
-import dev.anhcraft.craftkit.utils.InventoryUtil;
+import dev.anhcraft.advancedtoilet.api.ToiletPassenger;
+import dev.anhcraft.advancedtoilet.utils.CustomHolder;
+import dev.anhcraft.advancedtoilet.utils.ItemUtil;
+import dev.anhcraft.advancedtoilet.utils.NMSVersion;
 import dev.anhcraft.jvmkit.utils.RandomUtil;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -23,9 +19,9 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
@@ -138,31 +134,22 @@ public class ToiletHandler extends ATComponent implements Listener {
     }
 
     private void toiletActivityMenu(Player p, Toilet toilet) {
-        CustomGUI cg = CraftExtension.of(AdvancedToilet.class).createCustomGUI(null,
+        CustomHolder customHolder = new CustomHolder(toilet);
+        Inventory inv = Bukkit.createInventory(
+                customHolder,
                 27,
-                ChatUtil.formatColorCodes(plugin.messageConf.getString("title_wc_gui"))
+                ChatColor.translateAlternateColorCodes('&', plugin.messageConf.getString("title_wc_gui"))
         );
-        InventoryUtil.fillAll(cg, new ItemStack(Material.valueOf(
+        customHolder.setInventory(inv);
+        ItemStack bg = new ItemStack(Material.valueOf(
                 NMSVersion.current().compare(NMSVersion.v1_13_R1) >= 0 ?
                         "GRAY_STAINED_GLASS_PANE" : "STAINED_GLASS_PANE"
-        ), 1, (short) 7));
-        cg.addContentCallback(SlotCallback.PREVENT_MODIFY);
-        cg.setItem(CenterSlot.CENTER_2_A.row(1), new ItemBuilder(Material.DIAMOND).name(plugin.messageConf.getString("pee_wc_gui")).build(), new SlotCallback() {
-            @Override
-            public void click(InventoryClickEvent event, Player player, BaseGUI gui) {
-                plugin.toiletHandler.newActive(player,
-                        toilet,
-                        ToiletActivity.PEE);
-            }
-        });
-        cg.setItem(CenterSlot.CENTER_2_B.row(1), new ItemBuilder(Material.DIAMOND).name(plugin.messageConf.getString("poop_wc_gui")).build(), new SlotCallback() {
-            @Override
-            public void click(InventoryClickEvent event, Player player, BaseGUI gui) {
-                plugin.toiletHandler.newActive(player,
-                        toilet,
-                        ToiletActivity.POOP);
-            }
-        });
-        p.openInventory(cg);
+        ), 1, (short) 7);
+        for(int i = 0; i < inv.getSize(); i++){
+            inv.setItem(i, bg);
+        }
+        inv.setItem(11, ItemUtil.buildItem(Material.DIAMOND, plugin.messageConf.getString("pee_wc_gui")));
+        inv.setItem(15, ItemUtil.buildItem(Material.DIAMOND, plugin.messageConf.getString("poop_wc_gui")));
+        p.openInventory(inv);
     }
 }

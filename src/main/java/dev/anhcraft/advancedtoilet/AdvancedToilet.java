@@ -2,18 +2,14 @@ package dev.anhcraft.advancedtoilet;
 
 import co.aikar.commands.PaperCommandManager;
 import dev.anhcraft.advancedtoilet.api.ToiletApi;
-import dev.anhcraft.advancedtoilet.listeners.ShitHandler;
+import dev.anhcraft.advancedtoilet.listeners.GUIHandler;
 import dev.anhcraft.advancedtoilet.listeners.ToiletHandler;
 import dev.anhcraft.advancedtoilet.tasks.MainTask;
 import dev.anhcraft.advancedtoilet.tasks.RealisticControlTask;
-import dev.anhcraft.craftkit.chat.Chat;
-import dev.anhcraft.craftkit.utils.ServerUtil;
+import dev.anhcraft.advancedtoilet.utils.Chat;
 import dev.anhcraft.jvmkit.utils.FileUtil;
 import dev.anhcraft.jvmkit.utils.IOUtil;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Item;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -41,8 +37,8 @@ public final class AdvancedToilet extends JavaPlugin {
             api.loadToilet(Integer.parseInt(k), Objects.requireNonNull(dataConf.getConfigurationSection(k)));
         }
 
-        getServer().getPluginManager().registerEvents(new ShitHandler(), this);
         getServer().getPluginManager().registerEvents(toiletHandler = new ToiletHandler(this), this);
+        getServer().getPluginManager().registerEvents(new GUIHandler(this), this);
 
         getServer().getScheduler().runTaskTimer(this, new MainTask(this), 40, 20);
         getServer().getScheduler().runTaskTimer(this, rct = new RealisticControlTask(this), 40, 1200);
@@ -99,13 +95,5 @@ public final class AdvancedToilet extends JavaPlugin {
         messageConf = YamlConfiguration.loadConfiguration(messageFile);
 
         chat = new Chat(generalConf.getString("prefix"));
-    }
-
-    @Override
-    public void onDisable() {
-        for (Entity e : ServerUtil.getAllEntities()) {
-            if (!e.getType().equals(EntityType.DROPPED_ITEM) || !((Item) e).getItemStack().equals(api.getShit())) continue;
-            e.remove();
-        }
     }
 }

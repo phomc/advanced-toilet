@@ -2,6 +2,5 @@ name: AdvancedToilet
 version: ${project.version}
 main: dev.anhcraft.advancedtoilet.AdvancedToilet
 api-version: "1.13"
-depend: [CraftKit]
 authors: [anhcraft]
 description: Get into toilet now!

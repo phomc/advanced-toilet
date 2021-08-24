@@ -1,6 +1,6 @@
 package dev.anhcraft.advancedtoilet.api;
 
-import dev.anhcraft.craftkit.cb_common.NMSVersion;
+import dev.anhcraft.advancedtoilet.utils.NMSVersion;
 import org.bukkit.block.Block;
 import org.jetbrains.annotations.NotNull;
 

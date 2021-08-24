@@ -40,6 +40,10 @@
                             <pattern>co.aikar.commands</pattern>
                             <shadedPattern>dev.anhcraft.advancedtoilet.acf</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>dev.anhcraft.jvmkit</pattern>
+                            <shadedPattern>dev.anhcraft.advancedtoilet.jvmkit</shadedPattern>
+                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>
@@ -76,6 +80,10 @@
             <id>aikar</id>
             <url>https://repo.aikar.co/content/groups/aikar/</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -89,6 +97,12 @@
             <groupId>co.aikar</groupId>
             <artifactId>acf-paper</artifactId>
             <version>0.5.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.anhcraft</groupId>
+            <artifactId>JvmKit</artifactId>
+            <version>v1.1.5</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
