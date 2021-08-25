@@ -1,5 +1,7 @@
 package dev.anhcraft.advancedtoilet.api;
 
+import dev.anhcraft.advancedtoilet.utils.BlockUpdater;
+import dev.anhcraft.advancedtoilet.utils.LegacyBlockUpdater;
 import dev.anhcraft.advancedtoilet.utils.NMSVersion;
 import org.bukkit.block.Block;
 import org.jetbrains.annotations.NotNull;
@@ -33,12 +35,9 @@ public class ToiletBowl {
 
     public void update() {
         if(NMSVersion.current().compare(NMSVersion.v1_13_R1) >= 0){
-            org.bukkit.block.data.Levelled lv = (org.bukkit.block.data.Levelled) block.getBlockData();
-            lv.setLevel(Math.min(lv.getMaximumLevel(), waterLevel.getLevel()));
-            block.setBlockData(lv);
+            BlockUpdater.update(block, waterLevel);
         } else {
-            block.getState().getData().setData((byte) waterLevel.getLevel());
-            block.getState().update();
+            LegacyBlockUpdater.update(block, waterLevel);
         }
     }
 
