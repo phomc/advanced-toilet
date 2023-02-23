@@ -19,7 +19,8 @@ public enum NMSVersion {
     v1_17_R1,
     v1_18_R1,
     v1_18_R2,
-    v1_19_R1;
+    v1_19_R1,
+    v1_19_R2;
 
     private static final NMSVersion nms = NMSVersion.valueOf(Bukkit.getServer().getClass().getPackage().getName().replace(".",  ",").split(",")[3]);
 
