@@ -124,7 +124,7 @@ public class ATCommand extends BaseCommand {
     }
 
     @Subcommand("payshit")
-    @Description("Give a shit block to someone")
+    @Description("Tặng cục shit cho ai đó")
     @CommandPermission("at.payshit")
     public void give(CommandSender sender, Player another){
         another.getInventory().addItem(plugin.api.getShit());
@@ -133,7 +133,7 @@ public class ATCommand extends BaseCommand {
     }
 
     @Subcommand("force pee")
-    @Description("Force someone to pee at a toilet")
+    @Description("Bắt ai đó tiểu tiện")
     @CommandPermission("at.force.pee")
     public void doPee(CommandSender sender, int id, Player another){
         Toilet t = plugin.api.getToilet(id);
@@ -146,7 +146,7 @@ public class ATCommand extends BaseCommand {
     }
 
     @Subcommand("force poop")
-    @Description("Force someone to poop at a toilet")
+    @Description("Bắt ai đó đại tiện")
     @CommandPermission("at.force.poop")
     public void doPoop(CommandSender sender, int id, Player another){
         Toilet t = plugin.api.getToilet(id);

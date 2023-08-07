@@ -61,14 +61,14 @@ public class RealisticControlTask extends ATComponent implements Runnable {
             int max;
             if (plugin.generalConf.getBoolean("realistic_mode.pee.enabled")) {
                 time = getTime(p, ToiletActivity.PEE);
-                if (plugin.generalConf.getInt("realistic_mode.pee.interval.max") < time) {
+                if (plugin.generalConf.getInt("realistic_mode.pee.interval") < time) {
                     resetTime(p, ToiletActivity.PEE);
                     plugin.chat.message(p, Objects.requireNonNull(plugin.messageConf.getString("pee_through_time")));
                     p.getWorld().spawnParticle(Particle.DRIP_WATER, p.getLocation(), 300, 0, 0, 0, 0);
                 } else {
                     addTime(p, ToiletActivity.PEE);
                     time = getTime(p, ToiletActivity.PEE);
-                    max = plugin.generalConf.getInt("realistic_mode.pee.interval.max");
+                    max = plugin.generalConf.getInt("realistic_mode.pee.interval");
                     if (time == max - 1 || time == max - 3 || time == max - 5) {
                         plugin.chat.message(p, Objects.requireNonNull(plugin.messageConf.getString("need_pee")));
                     }
@@ -76,19 +76,18 @@ public class RealisticControlTask extends ATComponent implements Runnable {
             }
             if (plugin.generalConf.getBoolean("realistic_mode.poop.enabled")) {
                 time = getTime(p, ToiletActivity.POOP);
-                if (plugin.generalConf.getInt("realistic_mode.poop.interval.max") < time) {
+                if (plugin.generalConf.getInt("realistic_mode.poop.interval") < time) {
                     resetTime(p, ToiletActivity.POOP);
                     plugin.chat.message(p, Objects.requireNonNull(plugin.messageConf.getString("poop_through_time")));
                     p.getWorld().spawnParticle(Particle.DRIP_LAVA, p.getLocation(), 300, 0, 0, 0, 0);
                     final Item i = p.getWorld().dropItemNaturally(p.getLocation(), plugin.api.getShit());
                     i.setCustomName(ChatColor.translateAlternateColorCodes('&', p.getName() + "'s shit"));
                     i.setCustomNameVisible(true);
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, i::remove, 120L);
                     continue;
                 }
                 addTime(p, ToiletActivity.POOP);
                 time = getTime(p, ToiletActivity.POOP);
-                max = plugin.generalConf.getInt("realistic_mode.poop.interval.max");
+                max = plugin.generalConf.getInt("realistic_mode.poop.interval");
                 if (time == max - 1 || time == max - 3) {
                     plugin.chat.message(p, Objects.requireNonNull(plugin.messageConf.getString("need_poop")));
                     continue;

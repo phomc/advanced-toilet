@@ -1,23 +1,19 @@
-# Plugin's chat prefix
+# Tên prefix
 prefix: "&6&l[Toilet]&r "
 
-# Realistic mode settings
+# Thiết lập chế độ chân thực
 realistic_mode:
-  pee:
+  pee: # Tiểu tiện
     enabled: true
-    interval:
-      min: 5
-      max: 10
-  poop:
+    interval: 20
+  poop: # Đại tiện
     enabled: true
-    interval:
-      min: 20
-      max: 35
+    interval: 60
 
-# The chance to increase the amount of urine, or the weight of shit
+# Tỉ lệ tăng số ml tiểu hoặc gam shit
 counter_inc_chance: 0.5
 
-# The required time in toilet
+# Thời gian yêu cầu trong toilet
 time_wc:
   min: 10
   max: 20

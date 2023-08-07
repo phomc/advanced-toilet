@@ -34,19 +34,27 @@ public class MainTask extends ATComponent implements Runnable {
                     Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                         tb.setWaterLevel(ToiletBowl.WaterLevel.TWO_OF_THREE_PARTS);
                         tb.update();
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                            tb.setWaterLevel(ToiletBowl.WaterLevel.ONE_OF_THREE_PARTS);
+                            tb.update();
+                            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                                tb.setWaterLevel(ToiletBowl.WaterLevel.EMPTY);
+                                tb.update();
+                                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                                    tb.setWaterLevel(ToiletBowl.WaterLevel.ONE_OF_THREE_PARTS);
+                                    tb.update();
+                                    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                                        tb.setWaterLevel(ToiletBowl.WaterLevel.TWO_OF_THREE_PARTS);
+                                        tb.update();
+                                        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                                            tb.setWaterLevel(ToiletBowl.WaterLevel.FULL);
+                                            tb.update();
+                                        }, 30L);
+                                    }, 30L);
+                                }, 30L);
+                            }, 30L);
+                        }, 30L);
                     }, 30L);
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                        tb.setWaterLevel(ToiletBowl.WaterLevel.ONE_OF_THREE_PARTS);
-                        tb.update();
-                    }, 45L);
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                        tb.setWaterLevel(ToiletBowl.WaterLevel.EMPTY);
-                        tb.update();
-                    }, 60L);
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                        tb.setWaterLevel(ToiletBowl.WaterLevel.FULL);
-                        tb.update();
-                    }, 80L);
                 }
                 continue;
             }
