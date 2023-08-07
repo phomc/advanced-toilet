@@ -8,7 +8,6 @@ import dev.anhcraft.advancedtoilet.api.ToiletBowl;
 import dev.anhcraft.advancedtoilet.api.ToiletPassenger;
 import dev.anhcraft.advancedtoilet.utils.CustomHolder;
 import dev.anhcraft.advancedtoilet.utils.ItemUtil;
-import dev.anhcraft.advancedtoilet.utils.NMSVersion;
 import dev.anhcraft.jvmkit.utils.RandomUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -141,10 +140,7 @@ public class ToiletHandler extends ATComponent implements Listener {
                 ChatColor.translateAlternateColorCodes('&', plugin.messageConf.getString("title_wc_gui"))
         );
         customHolder.setInventory(inv);
-        ItemStack bg = new ItemStack(Material.valueOf(
-                NMSVersion.current().compare(NMSVersion.v1_13_R1) >= 0 ?
-                        "GRAY_STAINED_GLASS_PANE" : "STAINED_GLASS_PANE"
-        ), 1, (short) 7);
+        ItemStack bg = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
         for(int i = 0; i < inv.getSize(); i++){
             inv.setItem(i, bg);
         }
