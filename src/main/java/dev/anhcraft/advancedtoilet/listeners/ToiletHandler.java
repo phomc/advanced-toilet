@@ -39,7 +39,7 @@ public class ToiletHandler extends ATComponent implements Listener {
         plugin.rct.resetTime(p, act);
         ToiletBowl tb = toilet.getBowl();
         if(tb != null) {
-            p.teleport(tb.getBlock().getLocation().add(0, 1, 0));
+            p.teleport(tb.getBlock().getLocation().add(0.5, 1, 0.5));
             tb.setWaterLevel(ToiletBowl.WaterLevel.FULL);
             tb.update();
         }
@@ -70,7 +70,7 @@ public class ToiletHandler extends ATComponent implements Listener {
                 Location tp = tb.getBlock().getLocation();
                 tp.setPitch(p.getLocation().getPitch());
                 tp.setYaw(p.getLocation().getYaw());
-                p.teleport(tp.add(0, 1, 0));
+                p.teleport(tp.add(0.5, 1, 0.5));
             }
         }
     }

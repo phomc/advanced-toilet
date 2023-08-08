@@ -13,6 +13,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.xml.transform.ErrorListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -27,9 +28,15 @@ public final class AdvancedToilet extends JavaPlugin {
     public ToiletHandler toiletHandler;
     public RealisticControlTask rct;
     public ToiletApi api;
+    private static AdvancedToilet instance;
+
+    public static AdvancedToilet getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
+        instance = this;
         loadConf();
 
         api = new ToiletApi(this);
@@ -54,7 +61,7 @@ public final class AdvancedToilet extends JavaPlugin {
                     dataNeedSave = false;
                 }
             }
-        }.runTaskTimerAsynchronously(this, 0, 60);
+        }.runTaskTimerAsynchronously(this, 0, 300);
 
         PaperCommandManager pcm = new PaperCommandManager(this);
         pcm.registerCommand(new ATCommand(this));

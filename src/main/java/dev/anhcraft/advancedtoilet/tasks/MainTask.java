@@ -21,7 +21,6 @@ public class MainTask extends ATComponent implements Runnable {
         for (UUID u : ToiletHandler.USING_TOILET.keySet()) {
             ToiletPassenger ta = ToiletHandler.USING_TOILET.get(u);
             if (ta.getTime() == ta.getMaxTime()) {
-                ta.getPlayer().teleport(ta.getToilet().getSpawnPoint());
                 ta.getToilet().setPassenger(null);
                 ToiletHandler.USING_TOILET.remove(u);
                 if (ta.getActivity().equals(ToiletActivity.PEE)) {
@@ -64,9 +63,10 @@ public class MainTask extends ATComponent implements Runnable {
                 World w = Objects.requireNonNull(l.getWorld());
                 if (ta.getActivity().equals(ToiletActivity.PEE)) {
                     w.playSound(l, Sound.BLOCK_LAVA_POP, 3.0f, 0.5f);
-                    w.spawnParticle(Particle.DRIP_WATER, l, 300, 0, 0, 0, 0);
+                    w.spawnParticle(Particle.DRIP_WATER, l, 300, 0.5, 0.5, 0.5, 0);
                 } else {
-                    w.spawnParticle(Particle.DRIP_LAVA, l, 300, 0, 0, 0, 0);
+                    w.playSound(l, Sound.BLOCK_LAVA_POP, 3.0f, 0.5f);
+                    w.spawnParticle(Particle.DRIP_LAVA, l, 300, 0.5, 0.5, 0.5, 0);
                 }
                 ta.setCounter(ta.getCounter() + 1);
             }

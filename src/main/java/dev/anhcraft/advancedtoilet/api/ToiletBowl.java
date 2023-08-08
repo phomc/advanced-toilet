@@ -11,6 +11,8 @@ public class ToiletBowl {
     public ToiletBowl(@NotNull WaterLevel waterLevel, @NotNull Block block) {
         this.block = block;
         this.waterLevel = waterLevel;
+
+        update();
     }
 
     public void setBlock(@NotNull Block block) {
